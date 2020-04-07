@@ -18,15 +18,15 @@ process_ebe <- function(ebe_path, SimStartDate, SimEndDate){
 
   ## read channel and watershed water and sediment data
 
-  ebe <- read.table(ebe_path, skip = 9, header = F)
+  ebe <- utils::read.table(ebe_path, skip = 9, header = F)
 
   ### set names of the dataframes
 
   colnames(ebe) <- c("Day_ebe", "Month_ebe", "Year_ebe", "P_ebe", "Runoff_ebe", "peak_ebe", "Sediment_ebe", "SRP_ebe", "PP_ebe", "TP_ebe")
 
   ## calcs
-  ebe <- ebe %>% mutate(Date = seq(from = as.Date(SimStartDate), to = as.Date(SimEndDate), by = 1),
-                        WY = get_waterYear(Date),
+  ebe <- ebe %>% dplyr::mutate(Date = seq(from = as.Date(SimStartDate), to = as.Date(SimEndDate), by = 1),
+                        WY = EflowStats::get_waterYear(Date),
                         Sediment_tonnes_ebe = Sediment_ebe/1000,
                         SRP_tonnes_ebe = SRP_ebe/1000,
                         PP_tonnes_ebe = PP_ebe/1000,

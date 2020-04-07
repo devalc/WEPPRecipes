@@ -21,7 +21,7 @@ process_totalwatsed <- function(totalwatsed_path, init_reservoir_vol_mm,
                                      Baseflow_coeff,
                                      Aquifer_coeff){
   ## read water and sediment data
-  totalwatsed <- read.table(totalwatsed_path,header = F)
+  totalwatsed <- utils::read.table(totalwatsed_path,header = F)
 
 
   ### set names of the dataframes
@@ -38,8 +38,8 @@ process_totalwatsed <- function(totalwatsed_path, init_reservoir_vol_mm,
     dplyr::mutate(Sed_Del_tonnes_ha_wshed = Sed_Del_tonnes_wshed / Area_m2_wshed * 10000,
                   originDate = as.Date(paste0(Y_wshed, "-01-01"),tz = "UTC") - days(1),
                   Date = as.Date(DOY_wshed, origin = originDate, tz = "UTC"),
-                  WY = get_waterYear(Date)) %>% select(-originDate) %>%
-    select(DOY_wshed, Y_wshed, Date, WY, everything())
+                  WY = EflowStats::get_waterYear(Date)) %>% dplyr::select(-originDate) %>%
+    dplyr::select(DOY_wshed, Y_wshed, Date, WY, everything())
 
 
   totalwatsed$Resvol_mm_wshed[1] <- init_reservoir_vol_mm
@@ -54,7 +54,7 @@ process_totalwatsed <- function(totalwatsed_path, init_reservoir_vol_mm,
     totalwatsed$SimSWE_mm_wshed[i] <- totalwatsed$SimSWE_mm_wshed[i-1] + totalwatsed$P_m3_wshed_to_mm[i] - totalwatsed$RM_m3_wshed_to_mm[i]
   }
 
-  totalwatsed <- totalwatsed %>% mutate(SimStreamflow_mm_wshed = Runoff_m3_wshed_to_mm + Lateral_m3_wshed_to_mm + Baseflow_mm_wshed,
+  totalwatsed <- totalwatsed %>% dplyr::mutate(SimStreamflow_mm_wshed = Runoff_m3_wshed_to_mm + Lateral_m3_wshed_to_mm + Baseflow_mm_wshed,
                                         PercRunoff_ofStreamflow_mm_wshed = Runoff_m3_wshed_to_mm/SimStreamflow_mm_wshed *100,
                                         PercLateral_ofStreamflow_mm_wshed = Lateral_m3_wshed_to_mm/SimStreamflow_mm_wshed *100,
                                         PercBaseflow_ofStreamflow_mm_wshed = Baseflow_mm_wshed/SimStreamflow_mm_wshed *100,
