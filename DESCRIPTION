@@ -16,4 +16,5 @@ Imports:
     dplyr,
     utils,
     EflowStats,
-    lubridate
+    lubridate,
+    hydroGOF
