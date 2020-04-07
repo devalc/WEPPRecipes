@@ -1,5 +1,5 @@
-#' Returns RMSE between  estimated and observed total phosphorus
-#'
+#' Returns RMSE between estimated and observed total phosphorus
+#' for hillslopes
 #'
 #' @param totalwatsed_df dataframe containing totalwatsed file
 #' @param Observed_P_kg_day dataframe containing
@@ -10,7 +10,7 @@
 #' @export
 #'
 #'
-rmse_TP_par <- function(totalwatsed_df, Observed_P_kg_day, par){
+rmse_TP_par_hillslopes <- function(totalwatsed_df, Observed_P_kg_day, par){
   ###par order P_conc_Runoff_guess_mg_l, P_conc_Lateral_guess_mg_l, P_conc_Baseflow_guess_mg_l, P_conc_Sediment_guess_mg_l
   P_calc <- totalwatsed_df %>% dplyr::select(Date, WY, Area_m2_wshed, Sed_Del_kg_wshed,
                                       Runoff_m3_wshed_to_mm, Lateral_m3_wshed_to_mm, Baseflow_mm_wshed )
