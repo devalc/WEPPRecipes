@@ -12,7 +12,7 @@
 #'
 #'
 
-process_WEPP_chanwb_out <- function(chanwb_path, Wshed_Area_m2){
+process_chanwb <- function(chanwb_path, Wshed_Area_m2){
 
   ## read channel and watershed water and sediment data
 
@@ -28,7 +28,7 @@ process_WEPP_chanwb_out <- function(chanwb_path, Wshed_Area_m2){
   chanwb <- chanwb %>% dplyr::mutate(Q_outlet_mm = (Outflow_chan/ Wshed_Area_m2 *1000),
                               originDate = as.Date(paste0(Year_chan, "-01-01"),tz = "UTC") - lubridate::days(1),
                               Date = as.Date(Day_chan, origin = originDate, tz = "UTC"),
-                              WY = get_waterYear(Date)) %>% select(-originDate) %>%
+                              WY = ElowStats::get_waterYear(Date)) %>% select(-originDate) %>%
     dplyr::select(Year_chan, Day_chan, Date, WY, everything())
 
 
