@@ -32,11 +32,11 @@ process_totalwatsed <- function(totalwatsed_path, init_reservoir_vol_mm,
   #convert volume to depth units
   totalwatsed <- totalwatsed %>% dplyr::mutate_at(c("P_m3_wshed" ,"RM_m3_wshed", "T_m3_wshed", "E_m3_wshed", "Perc_m3_wshed",
                                                     "Runoff_m3_wshed", "Lateral_m3_wshed", "Storage_m3_wshed"),
-                                                  funs(to_mm = ./Area_m2_wshed * 1000)) %>%
+                                                  dplyr::funs(to_mm = ./Area_m2_wshed * 1000)) %>%
     dplyr::mutate(ET_mm_wshed = E_m3_wshed_to_mm + T_m3_wshed_to_mm,
                   Sed_Del_tonnes_wshed = cumsum(Sed_Del_kg_wshed/1000)) %>%
     dplyr::mutate(Sed_Del_tonnes_ha_wshed = Sed_Del_tonnes_wshed / Area_m2_wshed * 10000,
-                  originDate = as.Date(paste0(Y_wshed, "-01-01"),tz = "UTC") - days(1),
+                  originDate = as.Date(paste0(Y_wshed, "-01-01"),tz = "UTC") - lubridate::days(1),
                   Date = as.Date(DOY_wshed, origin = originDate, tz = "UTC"),
                   WY = EflowStats::get_waterYear(Date)) %>% dplyr::select(-originDate) %>%
     dplyr::select(DOY_wshed, Y_wshed, Date, WY, everything())

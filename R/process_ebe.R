@@ -30,7 +30,7 @@ process_ebe <- function(ebe_path, SimStartDate, SimEndDate){
                         Sediment_tonnes_ebe = Sediment_ebe/1000,
                         SRP_tonnes_ebe = SRP_ebe/1000,
                         PP_tonnes_ebe = PP_ebe/1000,
-                        TP_tonnes_ebe = TP_ebe/1000) %>% select(Day_ebe, Month_ebe, Year_ebe, Date, WY, everything())
+                        TP_tonnes_ebe = TP_ebe/1000) %>% dplyr::select(Day_ebe, Month_ebe, Year_ebe, Date, WY, everything())
 
 
 
