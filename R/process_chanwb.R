@@ -20,7 +20,7 @@ process_chanwb <- function(chanwb_path, Wshed_Area_m2){
 
   ### set names of the dataframes
 
-  colnames(chanwb) <- c("Year_chan" , "Day_chan", "Elmt_ID_chan","Chan_ID_chan", "Inflow_chan", "Outflow_chan",
+  colnames(chanwb) <- c("Year_chan", "Day_chan", "Elmt_ID_chan","Chan_ID_chan", "Inflow_chan", "Outflow_chan",
                         "Storage_chan", "Baseflow_chan", "Loss_chan", "Balance_chan")
 
 
