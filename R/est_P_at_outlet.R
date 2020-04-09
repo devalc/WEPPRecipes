@@ -20,7 +20,6 @@
 
 est_P_at_outlet <- function(P_outlet_df, Wshed_area_m2, par){
 
-
   P_outlet <- P_outlet_df %>% dplyr::mutate(P_load_mg_outlet = Sediment_ebe * par[4],
                                      P_runoff_mg_outlet = (Runoff_as_PercOf_Q_outlet_mm * Wshed_area_m2 * par[1]) ,
                                      P_lateral_mg_outlet = (Lateral_as_PercOf_Q_outlet_mm * Wshed_area_m2 * par[2]) ,
