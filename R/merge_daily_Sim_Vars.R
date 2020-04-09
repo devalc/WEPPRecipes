@@ -13,9 +13,9 @@
 #'
 #'
 merge_daily_Sim_Vars <- function(totalwatsed_df, chanwb_df, ebe_df, sim_P_df){
-  daily<- left_join(totalwatsed_df, chanwb_df, by = c("Date", "WY")) %>%
-    left_join(ebe_df,  by = c("Date", "WY")) %>%
-    left_join(sim_P_df,  by = c("Date", "WY")) %>%
+  daily<- dplyr::left_join(totalwatsed_df, chanwb_df, by = c("Date", "WY")) %>%
+    dplyr::left_join(ebe_df,  by = c("Date", "WY")) %>%
+    dplyr::left_join(sim_P_df,  by = c("Date", "WY")) %>%
     #, ObsData_df
     #left_join(ObsData_df,  by = c("Date", "WY"))
   return(daily)
