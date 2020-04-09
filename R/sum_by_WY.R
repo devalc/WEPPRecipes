@@ -11,9 +11,9 @@
 
 sum_by_WY <- function(dailydf){
   WY_sum_df <- daily_df %>%
-    select(-DOY_wshed, -Y_wshed, -Date, -Year_chan, -Day_chan,
+    dplyr::select(-DOY_wshed, -Y_wshed, -Date, -Year_chan, -Day_chan,
            -Chan_ID_chan, -Elmt_ID_chan) %>%
-    group_by(WY) %>%
-    summarise_all(.funs = sum) %>% ungroup()
+    dplyr::group_by(WY) %>%
+    dplyr::summarise_all(.funs = sum) %>% dplyr::ungroup()
   return(as.data.frame(WY_sum_df))
 }

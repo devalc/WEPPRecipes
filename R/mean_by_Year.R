@@ -11,9 +11,9 @@
 #'
 mean_by_Year <- function(dailydf){
   Annual_mean_df<- daily_df %>%
-    select(-DOY_wshed, -WY, -Date, -Year_chan, -Day_chan,
+    dplyr::select(-DOY_wshed, -WY, -Date, -Year_chan, -Day_chan,
            -Chan_ID_chan, -Elmt_ID_chan) %>%
-    group_by(Y_wshed) %>%
-    summarise_all(.funs = mean) %>% ungroup()
+    dplyr::group_by(Y_wshed) %>%
+    dplyr::summarise_all(.funs = mean) %>% dplyr::ungroup()
   return(as.data.frame(Annual_mean_df))
 }
