@@ -16,10 +16,10 @@ a dataframe of pbserved data
 Takes in a observed data in this specific ordered columns and format:
  column1. Date   --format = "%m/%d/%Y"
  column2. Streamflow --Units mm
- column3. Suspended sediment concentration --Units kg/day
+ column3. Suspended sediment concentration --Units tonnes/day
  column4. Total Phosphorus --Units kg/day
  column5. Soluble Reactive Phosphorus --Units kg/day
  column6. Particulate Phosphorus --Units kg/day
- column7. Suspended sediment concentration --Units tonnes/day
+ column7. WY
  column8. Snow Water Equivalent --Units mm
 }
