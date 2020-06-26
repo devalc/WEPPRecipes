@@ -36,8 +36,8 @@ get_N_P_from_chemicalplot <- function(output_folder,hillslope_area_df,
     df <- dplyr::left_join(df, hillslope_area_df, by= c("Hillslope"))
 
     df <- df %>%
-      dplyr::mutate_at(.vars = vars(3:7),~(.*Area_ha))%>%
-      dplyr::rename_at(vars(3:7), ~paste0(.,"_kg"))
+      dplyr::mutate_at(.vars = vars(NLeached,NSediments,NRunoff,PSediments,PRunoff),~(.*Area_ha))%>%
+      dplyr::rename_at(vars(NLeached,NSediments,NRunoff,PSediments,PRunoff), ~paste0(.,"_kg"))
 
     readr::write_csv(df,path = paste0(output_folder,"/", i , ".csv" ))
   }}
