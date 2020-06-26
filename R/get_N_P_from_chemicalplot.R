@@ -24,8 +24,8 @@ get_N_P_from_chemicalplot <- function(output_folder,hillslope_area_df,
     df <- read.table(paste(output_folder, i, sep = "/"), skip = 2) %>%
       dplyr::mutate(Hillslope = paste("hillslope", hillslpNo, sep = ""),
                     Date = seq(from = as.Date(SimStartDate), to = as.Date(SimEndDate), by = 1)) %>%
-      select(Date, Hillslope, V8, V9, V10, V20, V21) %>%
-      rename("Date" = "Date",
+      dplyr::select(Date, Hillslope, V8, V9, V10, V20, V21) %>%
+      dplyr::rename("Date" = "Date",
              "Hillslope" ="Hillslope",
              "NLeached"=V8,
              "NSediments"= V9,
@@ -33,11 +33,11 @@ get_N_P_from_chemicalplot <- function(output_folder,hillslope_area_df,
              "PSediments"=V20,
              "PRunoff"=V21)
 
-    df <- left_join(df, hillslope_area_df, by= c("Hillslope"))
+    df <- dplyr::left_join(df, hillslope_area_df, by= c("Hillslope"))
 
     df <- df %>%
-      mutate_at(.vars = vars(3:7),~(.*Area_ha))%>%
-      rename_at(vars(3:7), ~paste0(.,"_kg"))
+      dplyr::mutate_at(.vars = vars(3:7),~(.*Area_ha))%>%
+      dplyr::rename_at(vars(3:7), ~paste0(.,"_kg"))
 
     readr::write_csv(df,path = paste0(output_folder,"/", i , ".csv" ))
   }}

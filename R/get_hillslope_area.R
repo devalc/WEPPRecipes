@@ -13,9 +13,9 @@
 
 get_hillslope_area <- function(pass_file_path, Number_of_Hillslopes_simulated){
   b<- read.table(pass_file_path, skip = 11, nrows = Number_of_Hillslopes_simulated)
-  b <- b %>% mutate(Hillslope = paste(V1, V2, sep="")) %>%
-    mutate(Area_ha = V9*0.0001,
+  b <- b %>% dplyr::mutate(Hillslope = paste(V1, V2, sep="")) %>%
+    dplyr::mutate(Area_ha = V9*0.0001,
            Hillslope = tolower(Hillslope)) %>%
-    select(Hillslope, Area_ha)
+    dplyr::select(Hillslope, Area_ha)
   return(data.frame(b))
 }
