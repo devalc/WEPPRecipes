@@ -9,6 +9,7 @@
 #' @param number_of_hillslopes_simulated A numeric value specifying number of hillslopes simulated
 #' @param SimStartDate A string specifying simulation start date as "YYYY-MM-DD" (eg: "1990-01-01")
 #' @param SimEndDate A string specifying simulation end date as "YYYY-MM-DD" (eg: "2010-12-31")
+#' @import dplyr
 #' @return A csv file containing all the processed values for each hillslope written
 #' in the output_folder
 #' @export
@@ -36,8 +37,8 @@ get_N_P_from_chemicalplot <- function(output_folder,hillslope_area_df,
     df <- dplyr::left_join(df, hillslope_area_df, by= c("Hillslope"))
 
     df <- df %>%
-      dplyr::mutate_at(.vars = vars(NLeached,NSediments,NRunoff,PSediments,PRunoff),~(.*Area_ha))%>%
-      dplyr::rename_at(vars(NLeached,NSediments,NRunoff,PSediments,PRunoff), ~paste0(.,"_kg"))
+      dplyr::mutate_at(.vars = dplyr::vars(NLeached,NSediments,NRunoff,PSediments,PRunoff),~(.*Area_ha))%>%
+      dplyr::rename_at(dplyr::vars(NLeached,NSediments,NRunoff,PSediments,PRunoff), ~paste0(.,"_kg"))
 
     readr::write_csv(df,path = paste0(output_folder,"/", i , ".csv" ))
   }}
