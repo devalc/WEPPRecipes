@@ -12,7 +12,10 @@
 
 
 get_hillslope_area_ha <- function(pass_path) {
-  num_hslopes <- as.numeric(stringr::str_extract(i, "[[:digit:]]+"))
+  getstring<- grep("Total contributing area to outlet ",
+                   readLines(file), value = TRUE)
+  getstring <- getstring[[1]]
+  num_hslopes <- readr::parse_number(getstring)
   b <- read.table(pass_path, skip = 11, nrows = num_hslopes)
   b <- b %>% dplyr::select(-V2) %>% dplyr::mutate(V2 = 1:num_hslopes,
                                                   Hillslope = paste(V1, V2, sep =
