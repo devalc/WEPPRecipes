@@ -12,12 +12,7 @@
 
 
 get_hillslope_area_ha <- function(pass_path) {
-  getstring <- grep("NUMBER OF UNIQUE HILLSLOPES IN WATERSHED",
-                    readLines(pass_path),
-                    value = TRUE)
-  getstring <- getstring[[1]]
-  num <- readr::parse_number(getstring)
-  num_hslopes <- as.numeric(num)
+  num_hslopes <- as.numeric(stringr::str_extract(i, "[[:digit:]]+"))
   b <- read.table(pass_path, skip = 11, nrows = num_hslopes)
   b <- b %>% dplyr::select(-V2) %>% dplyr::mutate(V2 = 1:num_hslopes,
                                                   Hillslope = paste(V1, V2, sep =
