@@ -12,7 +12,7 @@
 
 
 get_hillslope_area_ha <- function(pass_path) {
-  getstring<- grep("Total contributing area to outlet ",
+  getstring<- grep("NUMBER OF UNIQUE HILLSLOPES IN WATERSHED",
                    readLines(pass_path), value = TRUE)
   getstring <- getstring[[1]]
   num_hslopes <- readr::parse_number(getstring)
