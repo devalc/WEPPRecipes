@@ -9,7 +9,6 @@ and Phosphorus variables in kg units and exports to individual csv file}
 get_N_P_from_chemicalplot(
   output_folder,
   hillslope_area_df,
-  number_of_hillslopes_simulated,
   SimStartDate,
   SimEndDate
 )
@@ -19,8 +18,6 @@ get_N_P_from_chemicalplot(
 the WEPP simulation output folder containing chemplot.out files}
 
 \item{hillslope_area_df}{A data frame containing hillslope areas (retrived using get_hillslope_area function)}
-
-\item{number_of_hillslopes_simulated}{A numeric value specifying number of hillslopes simulated}
 
 \item{SimStartDate}{A string specifying simulation start date as "YYYY-MM-DD" (eg: "1990-01-01")}
 
