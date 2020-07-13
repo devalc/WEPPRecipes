@@ -6,7 +6,6 @@
 #' @param output_folder A string pointing to the location of
 #' the WEPP simulation output folder containing chemplot.out files
 #' @param hillslope_area_df A data frame containing hillslope areas (retrived using get_hillslope_area function)
-#' @param number_of_hillslopes_simulated A numeric value specifying number of hillslopes simulated
 #' @param SimStartDate A string specifying simulation start date as "YYYY-MM-DD" (eg: "1990-01-01")
 #' @param SimEndDate A string specifying simulation end date as "YYYY-MM-DD" (eg: "2010-12-31")
 #' @import dplyr
@@ -17,7 +16,7 @@
 #'
 
 get_N_P_from_chemicalplot <- function(output_folder,hillslope_area_df,
-                                      number_of_hillslopes_simulated, SimStartDate, SimEndDate){
+                                      SimStartDate, SimEndDate){
   file.list <- list.files(path = output_folder, pattern='*_chemicalplot.out',full.names = F)
   for (i in file.list) {
     hillslpNo <- as.numeric(stringr::str_extract(i, "[[:digit:]]+"))
