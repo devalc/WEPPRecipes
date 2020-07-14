@@ -6,13 +6,13 @@
 and sums up values for all hillslopes for each date in df and calculates watershed area weighted
 N and P values. i.e. kg of N and P per ha of watershed area.}
 \usage{
-get_N_P_comparable_at_outlet(wepp_outputs_Dir, wshed_area_ha)
+get_N_P_comparable_at_outlet(wepp_outputs_Dir, total_hillslope_area_ha)
 }
 \arguments{
 \item{wepp_outputs_Dir}{A string pointing to the location of
 the WEPP simulation output folder containing chemplot.out files}
 
-\item{wshed_area_ha}{Numeric value specifying watershed area in ha}
+\item{total_hillslope_area_ha}{Numeric value specifying total area of hillslopes in watershed(ha)}
 }
 \value{
 A csv file containing kg per ha of watershed area values of all the processed variables (N, P)
