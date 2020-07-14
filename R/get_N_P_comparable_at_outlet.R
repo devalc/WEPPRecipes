@@ -5,7 +5,7 @@
 #'
 #' @param wepp_outputs_Dir A string pointing to the location of
 #' the WEPP simulation output folder containing chemplot.out files
-#' @param wshed_area_ha Numeric value specifying watershed area in ha
+#' @param total_hillslope_area_ha Numeric value specifying total area of hillslopes in watershed(ha)
 #' @import dplyr
 #' @import purrr
 #' @return A csv file containing kg per ha of watershed area values of all the processed variables (N, P)
@@ -14,7 +14,7 @@
 #'
 
 
-get_N_P_comparable_at_outlet <- name <- function(wepp_outputs_Dir, wshed_area_ha) {
+get_N_P_comparable_at_outlet <- name <- function(wepp_outputs_Dir, total_hillslope_area_ha) {
 
   list_csvs <- list.files(path = paste(wepp_outputs_Dir,"chemplot_csvs_all_hillslopes", sep = "/"),
                           pattern='*.csv',full.names = TRUE)
@@ -24,7 +24,7 @@ get_N_P_comparable_at_outlet <- name <- function(wepp_outputs_Dir, wshed_area_ha
   csvdf_day_sum<- aggregate(. ~Date, csvdf, sum, na.rm=TRUE)
 
   csvdf_day_sum <- csvdf_day_sum %>%
-    dplyr::mutate_at(.vars = vars(2:6),~(./wshed_area_ha))%>%
+    dplyr::mutate_at(.vars = vars(2:6),~(./total_hillslope_area_ha))%>%
     dplyr::rename_at(vars(2:6), ~paste0(.,"_wshed_ha"))
 
   readr::write_csv(csvdf_day_sum,path = paste0(wepp_outputs_Dir,"/","Simulated_N_P_kg_ha_of_wshed.csv" ))
