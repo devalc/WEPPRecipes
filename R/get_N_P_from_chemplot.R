@@ -17,7 +17,7 @@
 
 get_N_P_from_chemplot <- function(output_folder,hillslope_area_df,
                                       SimStartDate, SimEndDate){
-  file.list <- list.files(path = output_folder, pattern='chemplot_*.out',full.names = F)
+  file.list <- list.files(path = output_folder, pattern='chemplot_*.txt',full.names = F)
   for (i in file.list) {
     hillslpNo <- as.numeric(stringr::str_extract(i, "[[:digit:]]+"))
     # print(hillslpNo)
