@@ -29,7 +29,7 @@ get_N_P_comparable_at_outlet <- name <- function(wepp_outputs_Dir, total_hillslo
 
   readr::write_csv(csvdf_day_sum,path = paste0(wepp_outputs_Dir,"/","Simulated_N_P_kg_ha_of_wshed.csv" ))
 
-  write.table(csvdf_day_sum, file = paste0(wepp_outputs_Dir,"/","Simulated_N_P_kg_ha_of_wshed.txt" ), sep = ",",
+  write.table(format(csvdf_day_sum, digits=6), file = paste0(wepp_outputs_Dir,"/","Simulated_N_P_kg_ha_of_wshed.txt" ), sep = ",",
               row.names = FALSE, col.names = FALSE, quote=FALSE)
 }
 
