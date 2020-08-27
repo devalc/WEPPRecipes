@@ -25,7 +25,7 @@ get_N_P_comparable_at_outlet <- name <- function(wepp_outputs_Dir, total_hillslo
 
   csvdf_day_sum <- csvdf_day_sum %>%
     dplyr::mutate_at(.vars = vars(2:6),~(./total_hillslope_area_ha))%>%
-    dplyr::rename_at(vars(2:6), ~paste0(.,"_wshed_ha")) %>% mutate_at(2:6, .funs = list(~ round(., 3)))
+    dplyr::rename_at(vars(2:6), ~paste0(.,"_wshed_ha")) %>% mutate_at(2:6, .funs = list(~ round(., 6)))
 
   readr::write_csv(csvdf_day_sum,path = paste0(wepp_outputs_Dir,"/","Simulated_N_P_kg_ha_of_wshed.csv" ))
 
