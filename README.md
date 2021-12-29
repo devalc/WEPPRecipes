@@ -1,6 +1,6 @@
 # WEPPRecipes
 
-R package containing functions for post processing, analyzing and visualizing WEPP simulations.         
+R package containing functions for post-processing, analyzing, and visualizing WEPP simulations.         
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ local machine.
 
 ## How to Install
 
-Currently the package is available only through devtools and has not been pushed to CRAN yet. 
+Currently, the package is available only through devtools and has not been pushed to CRAN yet. 
 
 First, install devtools by running following command in your R console: 
 
